@@ -2,9 +2,9 @@ const moment = require('moment-timezone');
 
 module.exports.config = {
   name: "prefix",
-  version: "1.0.1",
+  version: "1.0.2",
   hasPermission: 2,
-  credits: "𝐈𝐬𝐥𝐚𝐦𝐢𝐜𝐤 𝐂𝐲𝐛𝐞𝐫",
+  credits: "Rudra",
   description: "Responds when someone sends 'prefix'",
   commandCategory: "bot prefix",
   usages: "prefix",
@@ -13,20 +13,12 @@ module.exports.config = {
 
 module.exports.languages = {
   en: {
-    title: "🤍✨ ROBOT PREFIX ✨🤍",
-    botName: "BOT NAME",
-    prefix: "ROBOT PREFIX",
-    cmdCount: "ROBOT CMD",
-    time: "TIME",
-    group: "GROUP NAME"
-  },
-  vi: {
-    title: "🤍✨ TIỀN TỐ ROBOT ✨🤍",
-    botName: "TÊN BOT",
-    prefix: "TIỀN TỐ",
-    cmdCount: "LỆNH ĐÃ TẢI",
-    time: "THỜI GIAN",
-    group: "TÊN NHÓM"
+    title: "⚡ Rudra Bot Prefix Info ⚡",
+    botName: "🤖 Bot Name",
+    prefix: "📌 Prefix",
+    cmdCount: "📦 Total Commands",
+    time: "🕒 Current Time",
+    group: "👥 Group Name"
   }
 };
 
@@ -34,10 +26,19 @@ module.exports.handleEvent = async ({ api, event, getText }) => {
   const body = event.body ? event.body.toLowerCase() : '';
   if (body.startsWith("prefix")) {
     const threadInfo = await api.getThreadInfo(event.threadID);
-    const groupName = threadInfo.threadName || "This Group";
-    const time = moment.tz("Asia/Dhaka").format("LLLL");
+    const groupName = threadInfo.threadName || "Unnamed Group";
+    const time = moment.tz("Asia/Kolkata").format("dddd, D MMMM YYYY • hh:mm A");
 
-    const text = `╭•┄┅═══❁🌺❁═══┅┄•╮\n${getText("title")}\n╰•┄┅═══❁🌺❁═══┅┄•╯\n\n${getText("botName")} : ${global.config.BOTNAME}\n${getText("prefix")} : ｢ ${global.config.PREFIX} ｣\n${getText("cmdCount")}: ｢ ${client.commands.size} ｣\n${getText("time")}: ${time}\n${getText("group")}: ${groupName}`;
+    const text = `
+╭━━━〔 ${getText("title")} 〕━━━╮
+
+${getText("botName")}: ${global.config.BOTNAME}
+${getText("prefix")}: ｢ ${global.config.PREFIX} ｣
+${getText("cmdCount")}: ｢ ${client.commands.size} ｣
+${getText("time")}: ${time}
+${getText("group")}: ${groupName}
+
+╰━━━━━━━━━━━━━━━━━━━━━━╯`;
 
     api.sendMessage({ body: text }, event.threadID, event.messageID);
   }
