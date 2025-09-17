@@ -3,11 +3,11 @@ const request = require("request");
 
 module.exports.config = {
   name: "groupinfo",
-  version: "1.0.0",
+  version: "1.0.1",
   hasPermssion: 1,
-  credits: "Mirai Team + Modified by Aminul Sordar",
-  description: "View your group (box) information",
-  commandCategory: "Box",
+  credits: "Rudra",
+  description: "Shows full info of current group",
+  commandCategory: "group",
   usages: "groupinfo",
   cooldowns: 0
 };
@@ -15,33 +15,22 @@ module.exports.config = {
 module.exports.languages = {
   en: {
     info: `
-🔧 GC Name: %1
-🔧 Group ID: %2
-🔧 Approval: %3
-🔧 Emoji: %4
-🔧 Members: %5
-🔧 Males: %6
-🔧 Females: %7
-🔧 Admins: %8
-🔧 Total Messages: %9
-Made with ❤️ by: AMINUL-SORDAR`
-  },
-  vi: {
-    info: `
-🔧 Tên nhóm: %1
-🔧 ID nhóm: %2
-🔧 Phê duyệt: %3
-🔧 Biểu cảm: %4
-🔧 Thành viên: %5
-🔧 Nam: %6
-🔧 Nữ: %7
-🔧 Quản trị viên: %8
-🔧 Tổng tin nhắn: %9
-Tạo bởi ❤️: AMINUL-SORDAR`
+📊 Group Info:
+🔹 Name: %1
+🔹 Group ID: %2
+🔹 Approval Mode: %3
+🔹 Emoji: %4
+🔹 Total Members: %5
+🔹 Males: %6
+🔹 Females: %7
+🔹 Admins: %8
+🔹 Total Messages: %9
+
+🛠 Powered by Rudra`
   }
 };
 
-module.exports.run = async function ({ api, event, args, getText }) {
+module.exports.run = async function ({ api, event, getText }) {
   const threadInfo = await api.getThreadInfo(event.threadID);
   const memLength = threadInfo.participantIDs.length;
 
@@ -52,7 +41,7 @@ module.exports.run = async function ({ api, event, args, getText }) {
     else if (user.gender === "FEMALE") genderFemale++;
   }
 
-  const approval = threadInfo.approvalMode ? "Turned on" : "Turned off";
+  const approval = threadInfo.approvalMode ? "On ✅" : "Off ❌";
   const threadName = threadInfo.threadName || "No name";
   const emoji = threadInfo.emoji || "❔";
   const groupID = threadInfo.threadID;
