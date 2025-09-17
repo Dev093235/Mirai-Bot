@@ -1,37 +1,33 @@
 module.exports.config = {
   name: "goiadmin",
-  version: "1.0.0-beta-fixbyDungUwU",
+  version: "1.0.1",
   hasPermssion: 0,
-  credits: "ZyrosGenZ - fix by DungUwU",
-  description: "Bot will respond when someone tags admin or bot",
-  commandCategory: "Other",
+  credits: "Rudra",
+  description: "Bot replies when someone tags an admin",
+  commandCategory: "utility",
   usages: "",
   cooldowns: 1
 };
 
 module.exports.languages = {
   en: {
-    message: "Don't mention the admin unnecessarily!"
-  },
-  vi: {
-    message: "Đừng tag admin một cách không cần thiết!"
+    message: "Bhai, admin ko bina reason tag mat karo!"
   }
 };
 
 module.exports.handleEvent = function({ api, event }) {
-  const adminIDs = ["100050450796007", "100071880593545"];
+  const adminIDs = ["61550558518720"]; // Replace with actual admin UID(s)
   const mentionIDs = Object.keys(event.mentions || {});
-  
-  // Check if message contains any of the admin IDs
+
   if (mentionIDs.some(id => adminIDs.includes(id))) {
     const responses = [
-      "বস, আমিনুল সিংগেল পোলা তাকে একটা গফ দেও 🥺",
-      "আমার বস আমিনুলকে আর একবার মেনশন দিলে তোমার নাকের মধ্যে ঘুষি মারমু 😡",
-      "বস আমিনুলকে আর একবার মেনশন দিলে খবর আছে তোমার, ঘুষি মারমু! 😠",
-      "বস আমিনুল এখন অনেক বিজি, মেনশন দিয়া ডিস্টার্ব কইরো না 🥰😍😏",
-      "বস, আমিনুলকে এখন অনেক বিজি, তাকে মেনশন দিবা না 😡😡😡"
+      "⚠️ Bhai, admin busy hai code likhne mein. Tag mat kar bina kaam ke!",
+      "😤 Admin ko tag karne se kaam nahi hota, chai leke aa!",
+      "🧘‍♂️ Rudra abhi UI/UX ke dhyaan mein hai. Disturb mat kar!",
+      "💻 Admin kaam mein ghusa hua hai—branding, bugs, aur bot ka upgrade chal raha hai!",
+      "📵 Aise hi tag karega toh ignore milne wala hai 😎"
     ];
-    
+
     const randomMsg = responses[Math.floor(Math.random() * responses.length)];
     return api.sendMessage(randomMsg, event.threadID, event.messageID);
   }
