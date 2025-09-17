@@ -1,76 +1,24 @@
 module.exports.config = {
   name: "admin",
-  version: "1.0.2",
+  version: "1.0.0",
   hasPermssion: 0,
-  credits: "aminulsordar",
-  description: "Bot operator information",
+  credits: "Dev",
+  description: "Show custom user info",
   commandCategory: "info",
   cooldowns: 1
 };
 
 module.exports.languages = {
   en: {
-    message: `    THE BOT OPERATOR
-             🇧🇩🇦🇷🇦🇷🇦🇷➕️➕️➕🇦🇷🇦🇷🇦🇷
+    message: `📱 USER INFO
 ╔══❀══◄░❀░►══❀══╗
- -NAME ➪ ༒ 𝐂𝐄𝐎-⸙ ABIR-❯⸙๏
 
- -Gender ➪ Male 🍂💜
+🔹 Phone ➪ 8950386412  
+🔹 Facebook UID ➪ 61550558518720  
+🔹 Profile Link ➪ https://www.facebook.com/profile.php?id=61550558518720
 
- -Age ➪ 18+ 🥀✨
-
- -Relationship ➪ Single
-
- -Work ➪ Student
-
- -Game ➪ Fire Lover 
-
- -Facebook ➪ https://www.facebook.com/100071880593545
-
- -LC ➪ "Hey, I say I love you because I do" 🥱
-
- -Page ➪ https://www.facebook.com/share/g/1EHHK6Rb7H/
-
- -FIRE ➪ ️༒ 𝐂𝐄𝐎℅ABIR-❯⸙๏🥺🔫̷
-
- -WhatsApp + Imo ➪ No gf so not giving 🥱01704407109
-
- -Telegram ➪ +8801704407109 🥺🔥🥰
-
- -Mail ➪ Inbox me if needed
-
-╚══❀══◄░❀░►══❀══╝`
-  },
-
-  vi: {
-    message: `    NGƯỜI ĐIỀU HÀNH BOT
-             🇧🇩🇦🇷🇦🇷🇦🇷➕️➕️➕🇦🇷🇦🇷🇦🇷
-╔══❀══◄░❀░►══❀══╗
- -Tên ➪ ༒ 𝐂𝐄𝐎-⸙ ABIR-❯⸙๏
-
- -Giới tính ➪ Nam 🍂💜
-
- -Tuổi ➪ 18+ 🥀✨
-
- -Tình trạng ➪ Độc thân
-
- -Công việc ➪ Học sinh
-
- -Game yêu thích ➪ Fire Lover
-
- -Facebook ➪ https://www.facebook.com/100071880593545
-
- -LC ➪ "Nói yêu là vì thực sự yêu" 🥱
-
- -Trang ➪ https://www.facebook.com/share/g/1EHHK6Rb7H/
-
- -FIRE ➪ ️༒ 𝐂𝐄𝐎℅ABIR-❯⸙๏🥺🔫̷
-
- -WhatsApp + Imo ➪ Không có người yêu nên không cho 🥱01704407109
-
- -Telegram ➪ +8801704407109 🥺🔥🥰
-
- -Mail ➪ Inbox nếu cần
+🔹 Status ➪ Active | Verified  
+🔹 Note ➪ For bot testing & command integration
 
 ╚══❀══◄░❀░►══❀══╝`
   }
