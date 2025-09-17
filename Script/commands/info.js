@@ -2,66 +2,62 @@ module.exports.config = {
 	name: "info",
 	version: "1.0.1", 
 	hasPermssion: 0,
-	credits: "AMINUL-SORDAR", //don't change the credits please
+	credits: "RUDRA", //don't change the credits please
 	description: "Admin and Bot info.",
 	commandCategory: "info",
 	cooldowns: 1,
-	dependencies: 
-	{
-    "request":"",
-    "fs-extra":"",
-    "axios":""
-  }
+	dependencies: {
+		"request": "",
+		"fs-extra": "",
+		"axios": ""
+	}
 };
-module.exports.run = async function({ api,event,args,client,Users,Threads,__GLOBAL,Currencies }) {
-const axios = global.nodemodule["axios"]
-const request = global.nodemodule["request"];
-const fs = global.nodemodule["fs-extra"];
-const time = process.uptime(),
+
+module.exports.run = async function({ api, event }) {
+	const axios = global.nodemodule["axios"];
+	const request = global.nodemodule["request"];
+	const fs = global.nodemodule["fs-extra"];
+	const time = process.uptime(),
 		hours = Math.floor(time / (60 * 60)),
 		minutes = Math.floor((time % (60 * 60)) / 60),
 		seconds = Math.floor(time % 60);
-const moment = require("moment-timezone");
-var juswa = moment.tz("Asia/Dhaka").format("『D/MM/YYYY』 【hh:mm:ss】");
-var link = ["https://i.imgur.com/1QaosHO.jpg", 
-            
-            "https://i.imgur.com/1BurIt1.jpg", 
-            
-            "https://i.imgur.com/tUFeHX3.jpg",
+	const moment = require("moment-timezone");
+	const currentTime = moment.tz("Asia/Kolkata").format("📅 D/MM/YYYY | 🕒 hh:mm:ss A");
 
-"https://i.imgur.com/iS52fh5.jpg",
-            
-            "https://i.imgur.com/1QaosHO.jpg"];
-  
-var callback = () => api.sendMessage({body:`ADMIN AND BOT INFORMATION 
-________________________________________
+	const images = [
+		"https://i.imgur.com/7vCTqbA.jpeg",
+		"https://i.imgur.com/VoPlE0Q.jpeg",
+		"https://i.imgur.com/5yHDG3r.jpeg",
+		"https://i.imgur.com/6rlJUGk.jpeg"
+	];
 
-❇️🅑︎🅞︎🅣︎ 🅝︎🅐︎🅜︎🅔︎ : ${global.config.BOTNAME}
+	const callback = () => {
+		api.sendMessage({
+			body: `📌 BOT & ADMIN INFO
+━━━━━━━━━━━━━━━━━━━━━━━
 
-❇️𝐁𝐎𝐓 𝐀𝐅𝐌𝐈𝐍 : 𝐈𝐓𝐙 ABIR
+🤖 Bot Name: ${global.config.BOTNAME}
+👨‍💻 Bot Admin: Rudra
+📍 Location: Haryana, India
 
-❇️𝐀𝐃𝐃𝐑𝐄𝐒𝐒 : RAJSHAHI 𝐂𝐈𝐓𝐘
+━━━━━━━━━━━━━━━━━━━━━━━
+📞 Contact:
+🔹 Facebook ID: fb.com/rudra.dev.digital
+🔹 Page: fb.com/rudra.bot.page
+🔹 Prefix: ${global.config.PREFIX}
+🔹 Owner: Rudra (Digital Devta)
 
-_____________CONTACT_____________
+━━━━━━━━━━━━━━━━━━━━━━━
+🕒 Uptime: ${hours}h ${minutes}m ${seconds}s
+📅 Current Time: ${currentTime}
 
-❇️𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊 𝐈𝐃: https://www.facebook.com/br4nd.abir.your.next.bf.fan
+🙏 Thanks for using ${global.config.BOTNAME} 💻🖤`,
+			attachment: fs.createReadStream(__dirname + "/cache/info.jpg")
+		}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/info.jpg"));
+	};
 
-❇️𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊 𝐏𝐀𝐆𝐄 : https://www.facebook.com/br4nd.abir.your.next.bf.fan🤟🤟
-
-❇️𝐁𝐎𝐓 𝐏𝐑𝐄𝐅𝐈𝐗 : ${global.config.PREFIX}
-
-❇️𝐁𝐎𝐓 𝐎𝐖𝐍𝐄𝐑 : {𝐂𝐑𝐔𝐒𝐇 ABIR}
-
-OTHER NFORMATION____________________
-
-TYPE /admin 
-
-➟ UPTIME
-
-TODAY IS TIME : ${juswa} 
-
-BOT IS RUNNING ${hours}:${minutes}:${seconds}.
-
-THANKS FOR USING ${global.config.BOTNAME} 『🤖🖤』`,attachment: fs.createReadStream(__dirname + "/cache/juswa.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/juswa.jpg")); 
-      return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname+"/cache/juswa.jpg")).on("close",() => callback());
-   };
+	// Download random image
+	request(encodeURI(images[Math.floor(Math.random() * images.length)]))
+		.pipe(fs.createWriteStream(__dirname + "/cache/info.jpg"))
+		.on("close", () => callback());
+};
