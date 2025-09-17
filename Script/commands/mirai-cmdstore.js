@@ -1,7 +1,7 @@
 //=========================//
 //  🐐 CmdStore Command    //
-//  Author: Aminul Sordar //
-//  Version: 1.0.1        //
+//  Author: Rudra          //
+//  Version: 1.0.2         //
 //=========================//
 
 const axios = require("axios");
@@ -9,10 +9,10 @@ const axios = require("axios");
 module.exports.config = {
   name: "cmdstore",
   aliases: ["cs", "market"],
-  version: "1.0.1",
+  version: "1.0.2",
   role: 0,
-  author: "Aminul Sordar",
-  description: "📌 Browse commands from GitHub dynamically.",
+  author: "Rudra",
+  description: "📌 Browse Rudra's commands from GitHub dynamically.",
   cooldowns: 0,
 };
 
@@ -20,15 +20,15 @@ module.exports.run = async ({ api, event, args }) => {
   const apiUrl = "https://my-api-show.vercel.app/api/cmdstore";
 
   const sendMsg = (msg) => api.sendMessage(msg, event.threadID, event.messageID);
-  const formatDateBD = (date) =>
-    new Date(date).toLocaleString("en-US", { timeZone: "Asia/Dhaka" });
+  const formatDateIN = (date) =>
+    new Date(date).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
 
   //================ Handlers ================//
   const handleShow = async (id) => {
-    if (!id) return sendMsg("❌ Please provide a valid ID.");
+    if (!id) return sendMsg("❌ Bhai, valid ID toh de.");
     try {
       const { data } = await axios.get(apiUrl, { params: { id } });
-      if (!data.items || !data.items.length) return sendMsg("⚠️ Command not found.");
+      if (!data.items || !data.items.length) return sendMsg("⚠️ Command nahi mila.");
 
       const cmd = data.items[0];
       sendMsg(`
@@ -39,8 +39,8 @@ module.exports.run = async ({ api, event, args }) => {
 ⚙️ Type       : ${cmd.type || "Unknown"}
 📝 Description: ${cmd.description || "No description"}
 👨‍💻 Author    : ${cmd.authorName}
-🔗 Code       : https://github.com/Aminulsordar/cmd-and-Api/raw/main/${cmd.rawID}
-📅 Added      : ${formatDateBD(cmd.createdAt)}
+🔗 Code       : https://github.com/Dev093235/cmd-and-Api/raw/main/${cmd.rawID}
+📅 Added      : ${formatDateIN(cmd.createdAt)}
 👀 Views      : ${cmd.views || 0}
 💝 Likes      : ${cmd.likes || 0}
 
@@ -48,15 +48,15 @@ module.exports.run = async ({ api, event, args }) => {
       `);
     } catch (err) {
       console.error(err);
-      sendMsg("❌ Failed to fetch command info.");
+      sendMsg("❌ Command fetch karne mein error aaya.");
     }
   };
 
   const handleSearch = async (query) => {
-    if (!query) return sendMsg("❌ Please provide a search query.");
+    if (!query) return sendMsg("❌ Search query toh daal bhai.");
     try {
       const { data } = await axios.get(apiUrl, { params: { search: query } });
-      if (!data.items || !data.items.length) return sendMsg("⚠️ No matching commands found.");
+      if (!data.items || !data.items.length) return sendMsg("⚠️ Kuch bhi nahi mila.");
 
       const output = data.items
         .slice(0, 5)
@@ -79,7 +79,7 @@ ${output}
       `);
     } catch (err) {
       console.error(err);
-      sendMsg("❌ Failed to search commands.");
+      sendMsg("❌ Search karne mein error aaya.");
     }
   };
 
@@ -107,6 +107,6 @@ Example: search pinterest
     }
   } catch (err) {
     console.error(err);
-    sendMsg("❌ An unexpected error occurred.");
+    sendMsg("❌ Kuch toh gadbad ho gaya.");
   }
 };
