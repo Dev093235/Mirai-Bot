@@ -2,9 +2,9 @@ const ITEMS_PER_PAGE = 15;
 
 module.exports.config = {
   name: "help",
-  version: "2.0.0",
+  version: "2.0.1",
   hasPermssion: 0,
-  credits: "Aminul Sordar",
+  credits: "Rudra",
   description: "📚 Show all commands with pagination and details",
   commandCategory: "🛠 System",
   usages: "[page | command name]",
@@ -14,7 +14,7 @@ module.exports.config = {
 module.exports.languages = {
   en: {
     helpList:
-      "📖 𝗛𝗘𝗟𝗣 𝗠𝗘𝗡𝗨 (𝗣𝗮𝗴𝗲 %1/%2)\n━━━━━━━━━━━━━━━\n%3\n━━━━━━━━━━━━━━━\n📌 𝗧𝗼𝘁𝗮𝗹 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀: %4\n📂 𝗧𝗼𝘁𝗮𝗹 𝗘𝘃𝗲𝗻𝘁𝘀: %5\n🧑‍💻 𝗠𝗮𝗱𝗲 𝗯𝘆: Aminul Sordar\n💡 %6",
+      "📖 𝗛𝗘𝗟𝗣 𝗠𝗘𝗡𝗨 (𝗣𝗮𝗴𝗲 %1/%2)\n━━━━━━━━━━━━━━━\n%3\n━━━━━━━━━━━━━━━\n📌 𝗧𝗼𝘁𝗮𝗹 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀: %4\n📂 𝗧𝗼𝘁𝗮𝗹 𝗘𝘃𝗲𝗻𝘁𝘀: %5\n👨‍💻 𝗖𝗼𝗱𝗲𝗱 𝗯𝘆: Rudra\n💡 %6",
     moduleInfo:
       "🔹 𝗖𝗼𝗺𝗺𝗮𝗻𝗱: %1\n📖 𝗗𝗲𝘀𝗰: %2\n\n🛠 𝗨𝘀𝗮𝗴𝗲: %3\n📁 𝗖𝗮𝘁𝗲𝗴𝗼𝗿𝘆: %4\n⏱ 𝗖𝗼𝗼𝗹𝗱𝗼𝘄𝗻: %5s\n🔐 𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻: %6\n👨‍💻 𝗖𝗼𝗱𝗲𝗱 𝗯𝘆: %7",
     user: "User 👤",
@@ -24,12 +24,12 @@ module.exports.languages = {
 };
 
 const tips = [
-  "Try: help uptime to see how it works!",
-  "Use the command name like 'help info'.",
-  "Want updates? Join AminulBot's support group!",
-  "You can change prefix per group.",
-  "Use commands wisely and don't spam.",
-  "Need image help? Type help photo!"
+  "💡 Try: help uptime to check bot status.",
+  "💡 Use: help [command] to get full info.",
+  "💡 Prefix can be changed per group.",
+  "💡 Don’t spam commands—bot bhi thakta hai!",
+  "💡 Want image tools? Try help photo.",
+  "💡 Rudra bot is always upgrading—stay tuned!"
 ];
 
 module.exports.run = async function ({ api, event, args, getText }) {
@@ -38,7 +38,7 @@ module.exports.run = async function ({ api, event, args, getText }) {
   const threadSetting = global.data.threadData.get(parseInt(threadID)) || {};
   const prefix = threadSetting.hasOwnProperty("PREFIX") ? threadSetting.PREFIX : global.config.PREFIX;
 
-  // If user requested specific command help
+  // Specific command help
   if (args[0] && commands.has(args[0].toLowerCase())) {
     const cmd = commands.get(args[0].toLowerCase());
     const perm =
@@ -64,7 +64,7 @@ module.exports.run = async function ({ api, event, args, getText }) {
     );
   }
 
-  // Paginated list of commands
+  // Paginated command list
   const allCmds = Array.from(commands.values()).map(
     (cmd, i) => `🔹 ${i + 1}. ${cmd.config.name}`
   );
