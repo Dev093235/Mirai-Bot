@@ -1,9 +1,9 @@
 module.exports.config = {
   name: "help2",
-  version: "3.0-onlyAll",
+  version: "3.0-rudraStyle",
   hasPermssion: 0,
-  credits: "Aminul Sordar - Simplified by ChatGPT",
-  description: "📚 Show all commands in decorated style",
+  credits: "Rudra",
+  description: "📚 Show all commands in decorated desi style",
   commandCategory: "🛠 System",
   usages: "all",
   cooldowns: 5
@@ -12,13 +12,13 @@ module.exports.config = {
 module.exports.languages = {
   en: {
     allCmds:
-`📚 𝗔𝗟𝗟 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦
+`📚 𝗔𝗟𝗟 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗟𝗜𝗦𝗧
 ━━━━━━━━━━━━━━━━━━━━
 %1
 ━━━━━━━━━━━━━━━━━━━━
-📌 Total: %2 commands
-📂 Events: %3
-🧑‍💻 Made by: Aminul Sordar`
+📌 Total Commands: %2  
+📂 Total Events: %3  
+👨‍💻 Coded by: Rudra`
   }
 };
 
@@ -27,11 +27,10 @@ module.exports.run = async function ({ api, event, args, getText }) {
   const { commands, events } = global.client;
 
   if (args[0] !== "all")
-    return api.sendMessage("❌ Please use: help all", threadID, messageID);
+    return api.sendMessage("❌ Bhai, use like this: help all", threadID, messageID);
 
   const allCmds = Array.from(commands.values()).map((cmd, i) =>
-`━❮●❯━━━━━❪❤💙💚❫━━━━━❮●❯━
-【•${i + 1} ★𝐂𝐌𝐃-𝐍𝐀𝐌𝐄★【•${cmd.config.name}•】`
+`━❮●❯━【 ${i + 1}. ★ ${cmd.config.name} ★ 】━❮●❯━`
   ).join("\n");
 
   const msg = getText(
